@@ -6,24 +6,6 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
 
-# 从环境变量中获取OMNI_TOKEN的值
-omni_token=$OMNI_TOKEN
-
-# 如果环境变量中没有设置OMNI_TOKEN，则提示用户输入
-if [ -z "$omni_token" ]; then
-    while true; do
-        echo -n "请输入你的Github Token [ENTER]: "
-        read omni_token
-        if [ -z "$omni_token" ]; then
-            echo "请输入token！"
-        else
-            break
-        fi
-    done
-fi
-auth_header="Authorization: token $omni_token"
-url="https://api.github.com/repos/omni-matrixrs/omni/releases"
-
 # Display the header
 echo -e "${green}#####################################"
 echo -e "######  Alpineomni 基于Unoffical V2board配套omni ######"
@@ -57,6 +39,23 @@ case "$choice" in
 1)
 
 echo -e "${green}你选择了安装omni${plain}"
+        # 从环境变量中获取OMNI_TOKEN的值
+        omni_token=$OMNI_TOKEN
+
+        # 如果环境变量中没有设置OMNI_TOKEN，则提示用户输入
+        if [ -z "$omni_token" ]; then
+            while true; do
+                echo -n "请输入你的Github Token [ENTER]: "
+                read omni_token
+                if [ -z "$omni_token" ]; then
+                    echo "请输入token！"
+                else
+                    break
+                fi
+            done
+        fi
+        auth_header="Authorization: token $omni_token"
+        url="https://api.github.com/repos/omni-matrixrs/omni/releases"
         # 更新系统软件源
         apk update
         # 安装一些必要的工具
