@@ -102,6 +102,20 @@ echo -e "${green}你选择了安装omni${plain}"
         rc-service omni stop
         rc-update del omni
         rm /etc/init.d/omni
+        if [[ ! -f /etc/omni/config.json ]]; then
+            cp config.json /etc/omni/
+        fi
+        if [[ ! -f /etc/omni/dns.json ]]; then
+            cp dns.json /etc/omni/
+        fi
+        if [[ ! -f /etc/omni/route.json ]]; then
+            cp route.json /etc/omni/
+        fi
+        if [[ ! -f /etc/omni/custom_outbound.json ]]; then
+            cp custom_outbound.json /etc/omni/
+        fi
+        if [[ ! -f /etc/omni/custom_inbound.json ]]; then
+            cp custom_inbound.json /etc/omni/
 # 自动更新并验证geosite&geoip的哈希
 GEOIP_DEFAULT_VERSION="202402010040"
 GEOSITE_DEFAULT_VERSION="20240131105845"
