@@ -116,6 +116,7 @@ echo -e "${green}你选择了安装omni${plain}"
         fi
         if [[ ! -f /etc/omni/custom_inbound.json ]]; then
             cp custom_inbound.json /etc/omni/
+        fi
 # 自动更新并验证geosite&geoip的哈希
 GEOIP_DEFAULT_VERSION="202402010040"
 GEOSITE_DEFAULT_VERSION="20240131105845"
